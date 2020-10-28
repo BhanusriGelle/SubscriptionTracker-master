@@ -1,0 +1,73 @@
+﻿@model SubscriptionTracker.Models.User
+@{ ViewBag.Title = "LogIn"; }
+<script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+    function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+                console.log('User signed out.');
+    });
+  }
+</script>
+<a href="#" onclick="signOut();">Sign out</a>
+<h2 style="color:#ec8b00;font-size:45px;margin-top:80px;text-align:center;"> Login </h2>
+<div class="roundcard" style=" height:auto; width:1200px;padding:30px; border-radius:10px;margin-bottom:40px;margin-left:30px; margin-top:10px; box-shadow: 0px 7px 40px #efefef;">
+
+    @using (Html.BeginForm())
+    {
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal" style="margin-left:30%;margin-right:25%;">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RememerMe, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox" style="margin-left:20px;">
+                                @Html.EditorFor(model => model.RememerMe)
+                                @Html.ValidationMessageFor(model => model.RememerMe, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="LogIn" class="btn btn-default" style="background-color:#ec8b00;color:#fff;" />
+                        </div>
+                        <br />
+                        <br />
+                        <div class="text-danger col-md-offset-2 col-md-10">
+                            @ViewBag.Message
+                        </div>
+                    </div>
+                </div>
+
+                                <div style="text-align:center;">
+                                    <p>Create New Account! <a>@Html.ActionLink("Register", "Registration")</a></p>
+                                </div>}
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<meta name="google-signin-client_id" content="849912598529-7jcumsl8ibjfklmrbd1nocghulobvas2.apps.googleusercontent.com">

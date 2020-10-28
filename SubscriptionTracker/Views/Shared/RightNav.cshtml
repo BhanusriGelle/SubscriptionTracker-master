@@ -1,0 +1,20 @@
+﻿
+@if (!string.IsNullOrEmpty(Convert.ToString(Session["EmailId"])))
+{
+    using (Html.BeginForm("Logout", "RegisterLogin", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn1" style="background-color:#ec8b00;color:#fff;" href="../LoanForms/Create">Add new service</a></li>
+            @*<li><a href="#">Welcome : @Session["EmailId"]</a></li>*@
+            <li><a href="../Home/Profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Login", "LogIn", "RegisterLogin", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+    }

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubTracker- Track and manage your subscriptions.</title>
+    <link rel="icon" href="@Url.Content("~/Images/Logo1.png")" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/font-awesome.min.css")
+</head>
+<body>
+    @*--------------------------Navbar Starts-----------------------------*@
+    <div class="navbar navbar-inverse navbar-fixed-top" style="padding:5px; background:#fff; border:none;">
+        <div class="container">
+            <div class="navbar-header">
+
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Images/Logo1.png" alt="Site Logo" style="height:40px; width: 40px;position:relative;left:5px;margin-bottom:4px;margin-top:4px;margin-right:10px;border-radius:8px;" />
+                </a>
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink( "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+                @Html.Partial("RightNav")
+            </div>
+        </div>
+
+    </div>
+
+    @*--------------------------Navbar Ends-----------------------------*@
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <footer style="background:#000; color:#fff;padding:20px;bottom: 0;width:100%;left:0px;">
+            <center>
+                <div class="row">
+                    <i class="fa fa-facebook-official fa-2x" style="margin:6px;"></i>
+                    <i class="fa fa-instagram fa-2x" style="margin:6px;"></i>
+                    <i class="fa fa-linkedin-square fa-2x" style="margin:6px;"></i>
+                    <i class="fa fa-twitter fa-2x" style="margin:6px;"></i>
+                    <i class="fa fa-github fa-2x" style="margin:6px;"></i>
+                </div>
+                <p>&copy; @DateTime.Now.Year - Design & Developed by Team : <b>DotNetLearner</b></p>
+            </center>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
