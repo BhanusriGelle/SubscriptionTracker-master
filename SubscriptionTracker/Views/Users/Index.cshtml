@@ -1,8 +1,28 @@
 ﻿@model IEnumerable<SubscriptionTracker.Models.User>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Index"; }
+<style>
+    body {
+        padding: 25px;
+        background-color: white;
+        color: black;
+        font-size: 20px;
+    }
+
+    .dark-mode {
+        background-color: black;
+        color: white;
+    }
+</style>
+<p>Click for dark/light Mode</p>
+<button onclick="myFunction()">Toggle dark mode</button>
+<script>
+    function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+    }
+</script>
+
 
 <h2>Index</h2>
 
@@ -23,23 +43,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmailId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmailId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmailId })
-        </td>
-    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PhoneNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Password)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.EmailId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.EmailId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.EmailId })
+    </td>
+</tr>
 }
 
 </table>

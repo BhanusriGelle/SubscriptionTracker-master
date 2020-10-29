@@ -1,26 +1,45 @@
 ﻿@model SubscriptionTracker.Models.User
 @{ ViewBag.Title = "LogIn"; }
-<script>
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+<style>
+    body {
+        padding: 25px;
+        background-color: white;
+        color: black;
+        font-size: 20px;
     }
-    function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
+    .dark-mode {
+        background-color: black;
+        color: white;
+    }
+</style>
+    <p>Click for dark/light Mode</p>
+    <button onclick="myFunction()">Toggle dark mode</button>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            //console.log('Password:' + profile.getPassword());
+        }
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
                 console.log('User signed out.');
-    });
-  }
-</script>
-<a href="#" onclick="signOut();">Sign out</a>
-<h2 style="color:#ec8b00;font-size:45px;margin-top:80px;text-align:center;"> Login </h2>
-<div class="roundcard" style=" height:auto; width:1200px;padding:30px; border-radius:10px;margin-bottom:40px;margin-left:30px; margin-top:10px; box-shadow: 0px 7px 40px #efefef;">
+            });
+        }
+        function myFunction() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }
+    </script>
+    <a href="#" onclick="signOut();">Sign out</a>
+    <h2 style="color:#ec8b00;font-size:45px;margin-top:80px;text-align:center;"> Login </h2>
+    <div class="roundcard" style=" height:auto; width:1200px;padding:30px; border-radius:10px;margin-bottom:40px;margin-left:30px; margin-top:10px; box-shadow: 0px 7px 40px #efefef;">
 
-    @using (Html.BeginForm())
-    {
+        @using (Html.BeginForm())
+        {
 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal" style="margin-left:30%;margin-right:25%;">
@@ -63,11 +82,11 @@
                                 <div style="text-align:center;">
                                     <p>Create New Account! <a>@Html.ActionLink("Register", "Registration")</a></p>
                                 </div>}
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
 
-}
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
-<meta name="google-signin-client_id" content="849912598529-7jcumsl8ibjfklmrbd1nocghulobvas2.apps.googleusercontent.com">
+    }
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <meta name="google-signin-client_id" content="849912598529-7jcumsl8ibjfklmrbd1nocghulobvas2.apps.googleusercontent.com">
