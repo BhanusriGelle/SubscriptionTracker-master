@@ -10,6 +10,7 @@ using System.Net.Mail;
 using System.Web.Security;
 using SubscriptionTracker.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Web.ModelBinding;
 
 namespace SubscriptionTracker.Controllers
 {
@@ -20,7 +21,7 @@ namespace SubscriptionTracker.Controllers
         // GET: Services
         public ActionResult Index()
         {
-
+            
             return View(db.ServicesTable.ToList());
         }
 
